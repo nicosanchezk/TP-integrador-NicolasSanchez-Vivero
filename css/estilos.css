@@ -1,0 +1,182 @@
+:root {
+  --verde-vivero: #1b3b22;
+  --fondo-claro: #faf9f5;
+  --color-texto: #333333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #faf9f5;
+  color: #333;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+.tarjeta-planta img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.boton {
+  display: inline-block;
+  background-color: #1b3b22;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.grilla-productos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.ficha-planta {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.detalle-principal {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.foto-grande {
+  width: 300px;
+  height: 300px;
+}
+
+.fotos-chicas {
+  margin-top: 10px;
+}
+
+.fotos-chicas img {
+  width: 60px;
+  height: 60px;
+  margin-right: 5px;
+}
+
+.bloque-info {
+  margin-left: 30px;
+}
+
+.precio {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.botones-compra {
+  margin-top: 15px;
+}
+
+table {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #eee;
+}
+
+.cajas-cuidados {
+  display: flex;
+}
+
+.cajas-cuidados div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-right: 10px;
+  width: 33%;
+  background-color: white;
+}
+
+.bloque-registro {
+  width: 800px;
+  margin: 30px auto;
+  display: flex;
+}
+
+.info-vivero {
+  background-color: var(--verde-vivero);
+  color: white;
+  padding: 25px;
+  width: 35%;
+}
+
+.info-vivero p {
+  margin-top: 15px;
+}
+
+.caja-formulario {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 25px;
+  width: 65%;
+}
+
+.caja-formulario h2 {
+  margin-bottom: 5px;
+}
+
+.caja-formulario fieldset {
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
+.caja-formulario legend {
+  font-weight: bold;
+  padding: 0 5px;
+}
+
+
+.caja-formulario input[type="text"],
+.caja-formulario input[type="email"],
+.caja-formulario input[type="password"],
+.caja-formulario input[type="date"],
+.caja-formulario input[type="tel"],
+.caja-formulario select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+}
+
+.caja-formulario input[type="checkbox"] {
+  width: auto;
+}
+
+.btn-enviar {
+  background-color: var(--verde-vivero);
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+}
