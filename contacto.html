@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — Vivero Raiz</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <a href="index.html">
+        <h1>VIVERO RAIZ</h1>
+        <small>DESDE 2022</small>
+      </a>
+    </div>
+    <nav aria-label="Navegacion principal">
+      <ul>
+        <li><a href="catalogo.html">Catalogo</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="login.html" class="btn-ingresar">Ingresar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contacto-seccion">
+      <header>
+        <h2>Contacto</h2>
+        <p>Escribinos por encargos, envios o asesoramiento. Respondemos dentro de las 24 horas habiles.</p>
+      </header>
+
+      <form action="#" method="post">
+        <div>
+          <label for="nombre">NOMBRE Y APELLIDO *</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div>
+          <label for="correo">CORREO ELECTRONICO *</label>
+          <input type="email" id="correo" name="correo" required>
+        </div>
+
+        <div>
+          <label for="telefono">TELEFONO</label>
+          <input type="tel" id="telefono" name="telefono">
+        </div>
+
+        <div>
+          <label for="motivo">MOTIVO *</label>
+          <select id="motivo" name="motivo" required>
+            <option value="" disabled selected>Elegi un motivo</option>
+            <option value="consulta">Consulta general</option>
+            <option value="pedido">Estado de un pedido</option>
+            <option value="asesoramiento">Asesoramiento botanico</option>
+            <option value="mayorista">Venta mayorista</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="mensaje">MENSAJE *</label>
+          <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+        </div>
+
+        <button type="submit">ENVIAR CONSULTA</button>
+      </form>
+    </section>
+
+    <aside class="contacto-info">
+      <div>
+        <h3>DONDE ESTAMOS</h3>
+        <p>Esquina de Boulevar y Urquiza — Santa Fe, Argentina <br> 3425148312 · <a href="nicolas:hola@viveroraiz.com">hola@viveroraiz.com</a></p>
+      </div>
+
+      <div>
+        <h3>HORARIOS DE ATENCIÓN</h3>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">DÍA</th>
+              <th scope="col">HORARIO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lunes a viernes</td>
+              <td>9 a 12 y de 15 a 20</td>
+            </tr>
+            <tr>
+              <td>Sabados</td>
+              <td>9 a 13</td>
+            </tr>
+            <tr>
+              <td>Domingos</td>
+              <td>Cerrado</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mapa-contenedor">
+        <p>MAPA EMBEBIDO (IFRAME)</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <section class="footer-info">
+      <div class="footer-col">
+        <h3>VIVERO RAIZ</h3>
+        <p>esquina Boulevard y Urquiza <br>Santa Fe, Argentina<br>3425148312</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>SECCIONES</h3>
+        <nav aria-label="Navegacion pie de pagina">
+          <ul>
+            <li><a href="catalogo.html">Catalogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="login.html">Ingresar</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h3>HORARIOS</h3>
+        <p>Lunes a viernes de 9 a 12 / 15 a 20<br>Sabados de 9 a 13<br>Domingos cerrado</p>
+      </div>
+    </section>
+
+    <div class="footer-bottom">
+      <p>&copy; VIVERO RAIZ — TRABAJO PRACTICO INTEGRADOR - Nicolás Sánchez</p>
+    </div>
+  </footer>
+
+</body>
+</html>
