@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro — Vivero Raiz</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <div class="bloque-registro">
+    
+    <div class="info-vivero">
+      <h2>VIVERO RAIZ</h2>
+      <p>Crea tu cuenta para cargar tus plantas y ver el catalogo.</p>
+    </div>
+
+    <div class="caja-formulario">
+      <h2>Crear cuenta</h2>
+      <p>Campos con * obligatorios</p>
+
+      <form action="login.html" method="post">
+        
+        <fieldset>
+          <legend>Datos personales</legend>
+          
+          <label for="nombre">Nombre *</label><br>
+          <input type="text" id="nombre" name="nombre" required><br><br>
+
+          <label for="apellido">Apellido *</label><br>
+          <input type="text" id="apellido" name="apellido" required><br><br>
+
+          <label for="nacimiento">Fecha de nacimiento</label><br>
+          <input type="date" id="nacimiento" name="nacimiento"><br><br>
+
+          <label for="tel">Telefono</label><br>
+          <input type="tel" id="tel" name="tel">
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+          <legend>Datos de la cuenta</legend>
+
+          <label for="correo">Correo electronico *</label><br>
+          <input type="email" id="correo" name="correo" required><br><br>
+
+          <label for="clave">Contrasena *</label><br>
+          <input type="password" id="clave" name="clave" minlength="8" required><br><br>
+
+          <label for="repetir-clave">Repetir contrasena *</label><br>
+          <input type="password" id="repetir-clave" name="repetir-clave" minlength="8" required><br><br>
+
+          <label for="rol">Rol en el vivero *</label><br>
+          <select id="rol" name="rol" required>
+            <option value="">Elegir...</option>
+            <option value="admin">Administrador</option>
+            <option value="vendedor">Vendedor</option>
+            <option value="cuidador">Cuidador</option>
+          </select>
+        </fieldset>
+
+        <br>
+
+        <label>
+          <input type="checkbox" name="terminos" required> Acepto terminos y condiciones
+        </label><br>
+
+        <label>
+          <input type="checkbox" name="noticias"> Recibir novedades
+        </label>
+
+        <br><br>
+
+        <input type="submit" value="Crear cuenta" class="btn-enviar">
+      </form>
+
+      <br>
+      <p>¿Ya tenes cuenta? <a href="login.html">Ingresa aca</a></p>
+    </div>
+
+  </div>
+
+</body>
+</html>
