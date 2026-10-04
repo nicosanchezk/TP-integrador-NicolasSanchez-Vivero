@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogo — Vivero Raiz</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <a href="index.html">
+        <h1>VIVERO RAIZ</h1>
+        <small>DESDE 2022</small>
+      </a>
+    </div>
+    <nav aria-label="Navegacion principal">
+      <ul>
+        <li><a href="catalogo.html">Catalogo</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="login.html" class="btn-ingresar">Ingresar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <header class="catalogo-header">
+      <h2>Catalogo</h2>
+      <p>46 plantas disponibles. Los precios incluyen la maceta.</p>
+    </header>
+
+    <section class="filtros-barra">
+      <form action="#" method="get">
+        <label for="buscar">BUSCAR</label>
+        <input type="search" id="buscar" name="buscar" placeholder="Ej: Lavanda">
+
+        <label for="categoria">CATEGORIA</label>
+        <select id="categoria" name="categoria">
+          <option value="todas">Todas</option>
+          <option value="interior">Interior</option>
+          <option value="exterior">Exterior</option>
+          <option value="suculenta">Suculenta</option>
+          <option value="aromatica">Aromatica</option>
+        </select>
+
+        <label for="orden">ORDENAR POR</label>
+        <select id="orden" name="orden">
+          <option value="nombre-asc">Nombre (A-Z)</option>
+          <option value="nombre-desc">Nombre (Z-A)</option>
+          <option value="precio-asc">Menor precio</option>
+          <option value="precio-desc">Mayor precio</option>
+        </select>
+
+        <button type="submit">FILTRAR</button>
+      </form>
+    </section>
+
+  
+    <section class="grilla-productos" aria-label="Listado de plantas">
+   
+      <article class="tarjeta-planta">
+        <img src="img/bocadedragon.jpg" alt="Planta Boca de dragon en maceta">
+        <span class="tag-categoria">EXTERIOR</span>
+        <h3>Boca de dragon</h3>
+        <p class="precio">$ 5.400</p>
+        <a href="planta.html?id=1">VER FICHA &rarr;</a>
+      </article>
+
+      <article class="tarjeta-planta">
+        <img src="img/cactusbola.jpg" alt="Cactus bola redondeado en maceta">
+        <span class="tag-categoria">SUCULENTA</span>
+        <h3>Cactus bola</h3>
+        <p class="precio">$ 4.200</p>
+        <a href="planta.html?id=2">VER FICHA &rarr;</a>
+      </article>
+
+      <article class="tarjeta-planta">
+        <img src="img/cala.jpg" alt="Planta de Cala con flores blancas">
+        <span class="tag-categoria">INTERIOR</span>
+        <h3>Cala</h3>
+        <p class="precio">$ 8.600</p>
+        <a href="planta.html?id=3">VER FICHA &rarr;</a>
+      </article>
+
+      <article class="tarjeta-planta">
+        <img src="img/lavanda.jpg" alt="Planta de Lavanda en maceta">
+        <span class="tag-categoria">EXTERIOR</span>
+        <h3>Lavanda</h3>
+        <p class="nombre-cientifico"><em>Lavandula angustifolia</em></p>
+        <p class="precio">$ 6.900</p>
+        <a href="planta.html?id=4">VER FICHA &rarr;</a>
+      </article>
+
+      <article class="tarjeta-planta">
+        <img src="img/lenguadesuegra.jpg" alt="Lengua de suegra o Sansevieria en maceta">
+        <span class="tag-categoria">INTERIOR</span>
+        <h3>Lengua de suegra</h3>
+        <p class="precio">$ 9.800</p>
+        <a href="planta.html?id=5">VER FICHA &rarr;</a>
+      </article>
+
+      <article class="tarjeta-planta">
+        <img src="img/romero.jpg" alt="Arbusto de Romero aromatico en maceta">
+        <span class="tag-categoria">AROMATICA</span>
+        <h3>Romero</h3>
+        <p class="precio">$ 3.800</p>
+        <a href="planta.html?id=6">VER FICHA &rarr;</a>
+      </article>
+
+    </section>
+
+    <nav class="paginacion" aria-label="Paginacion de resultados">
+      <ul>
+        <li><span class="pagina-actual">1</span></li>
+        <li><a href="catalogo.html?page=2">2</a></li>
+        <li><a href="catalogo.html?page=3">3</a></li>
+        <li><a href="catalogo.html?page=2">Siguiente &rarr;</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <section class="footer-info">
+      <div class="footer-col">
+        <h3>VIVERO RAIZ</h3>
+        <p>esquina Boulevard y Urquiza <br>Santa Fe, Argentina<br>3425148312</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>SECCIONES</h3>
+        <nav aria-label="Navegacion pie de pagina">
+          <ul>
+            <li><a href="catalogo.html">Catalogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="login.html">Ingresar</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h3>HORARIOS</h3>
+        <p>Lunes a viernes de 9 a 12 / 15 a 20<br>Sabados de 9 a 13<br>Domingos cerrado</p>
+      </div>
+    </section>
+
+    <div class="footer-bottom">
+      <p>&copy; VIVERO RAIZ — TRABAJO PRACTICO INTEGRADOR - Nicolás Sánchez</p>
+    </div>
+  </footer>
+
+</body>
+</html>
