@@ -16,6 +16,10 @@ body {
   color: #333;
 }
 
+a {
+  text-decoration: none;
+  color: #1b3b22;
+}
 img {
   max-width: 100%;
   height: auto;
