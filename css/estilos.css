@@ -42,6 +42,10 @@ footer {
   margin-top: 40px;
   border-top: 1px solid #ccc;
 }
+footer nav ul {
+  justify-content: center;
+  margin: 15px 0;
+}
 img {
   max-width: 100%;
   height: auto;
