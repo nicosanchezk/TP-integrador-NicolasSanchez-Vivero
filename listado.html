@@ -1,1 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración — Vivero Raiz</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
 
+  <header>
+    <div class="logo-container">
+      <a href="index.html">
+        <h1>VIVERO RAIZ</h1>
+        <small>INTRANET - GESTION</small>
+      </a>
+    </div>
+    <nav aria-label="Navegacion de sesion">
+      <ul>
+        <li><span>Hola, Nicolas</span></li>
+        <li><a href="catalogo.html" target="_blank">Ver sitio web</a></li>
+        <li><a href="login.html" class="boton">Cerrar sesion</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="panel-admin">
+    
+    <div class="encabezado-tabla">
+      <h2>Listado de Plantas</h2>
+      <a href="#" class="boton">+ Cargar nueva planta</a>
+    </div>
+
+    <table class="tabla-gestion">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Foto</th>
+          <th>Nombre</th>
+          <th>Categoria</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>#01</td>
+          <td><img src="img/bocadedragon.jpg" alt="Boca de dragon" class="mini-admin"></td>
+          <td>Boca de dragon</td>
+          <td>Exterior</td>
+          <td>$ 5.400</td>
+          <td>8 u.</td>
+          <td>
+            <a href="#" class="btn-accion btn-editar">Editar</a>
+            <a href="#" class="btn-accion btn-borrar">Borrar</a>
+          </td>
+        </tr>
+        <tr>
+          <td>#02</td>
+          <td><img src="img/cactusbola.jpg" alt="Cactus bola" class="mini-admin"></td>
+          <td>Cactus bola</td>
+          <td>Suculenta</td>
+          <td>$ 4.200</td>
+          <td>15 u.</td>
+          <td>
+            <a href="#" class="btn-accion btn-editar">Editar</a>
+            <a href="#" class="btn-accion btn-borrar">Borrar</a>
+          </td>
+        </tr>
+        <tr>
+          <td>#03</td>
+          <td><img src="img/cala.jpg" alt="Cala" class="mini-admin"></td>
+          <td>Cala</td>
+          <td>Interior</td>
+          <td>$ 8.600</td>
+          <td>5 u.</td>
+          <td>
+            <a href="#" class="btn-accion btn-editar">Editar</a>
+            <a href="#" class="btn-accion btn-borrar">Borrar</a>
+          </td>
+        </tr>
+        <tr>
+          <td>#04</td>
+          <td><img src="img/lenguadesuegra.jpg" alt="Lengua de suegra" class="mini-admin"></td>
+          <td>Lengua de suegra</td>
+          <td>Interior</td>
+          <td>$ 9.800</td>
+          <td>12 u.</td>
+          <td>
+            <a href="#" class="btn-accion btn-editar">Editar</a>
+            <a href="#" class="btn-accion btn-borrar">Borrar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </main>
+
+  <footer>
+    <p>&copy; VIVERO RAIZ — PANEL ADMINISTRATIVO - Nicolás Sánchez</p>
+  </footer>
+
+</body>
+</html>
