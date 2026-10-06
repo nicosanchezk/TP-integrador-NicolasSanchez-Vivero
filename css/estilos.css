@@ -206,3 +206,110 @@ th {
   font-weight: bold;
   cursor: pointer;
 }
+
+/* media query E4 */
+
+@media (max-width: 768px) {
+
+  header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .grilla-productos {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .ficha-planta {
+    width: 95%;
+  }
+
+  .detalle-principal {
+    flex-direction: column;
+  }
+
+  .bloque-info {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+
+  .foto-grande {
+    width: 100%;
+    height: auto;
+  }
+
+  .cajas-cuidados {
+    flex-direction: column;
+  }
+
+  .cajas-cuidados div {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .bloque-registro {
+    width: 95%;
+    flex-direction: column;
+  }
+
+  .info-vivero,
+  .caja-formulario {
+    width: 100%;
+  }
+
+}
+
+/* E5 */
+
+.encabezado-tabla {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tabla-gestion {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-gestion th, 
+.tabla-gestion td {
+  border: 1px solid #ddd;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.tabla-gestion th {
+  background-color: #eee;
+}
+
+.mini-admin {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.btn-accion {
+  padding: 4px 8px;
+  font-size: 12px;
+  color: white;
+  border-radius: 3px;
+  margin: 0 2px;
+}
+
+.btn-editar {
+  background-color: #1d8aac; 
+}
+
+.btn-borrar {
+  background-color: #c01d1d; 
+}
