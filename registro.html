@@ -3,83 +3,196 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro — Vivero Raiz</title>
+  <title>Gestión de Planta — Vivero Raíz</title>
   <link rel="stylesheet" href="css/estilos.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    Auth.protegerRuta();
+  </script>
 </head>
 <body>
 
-  <div class="bloque-registro">
-    
-    <div class="info-vivero">
-      <h2>VIVERO RAIZ</h2>
-      <p>Crea tu cuenta para cargar tus plantas y ver el catalogo.</p>
+  <header>
+    <h1>Vivero Raíz</h1>
+    <button id="btn-menu" class="btn-menu" aria-label="Abrir menú">&#9776;</button>
+    <nav id="nav-principal">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="listado.html">Intranet</a></li>
+        <li><a href="login.html">Ingresar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="bloque-registro">
+      <div class="info-vivero">
+        <h2 id="titulo-lateral">Alta de Planta</h2>
+        <p id="desc-lateral">Completá los datos del ejemplar para sumarlo al catálogo público y al stock del vivero.</p>
+        <p><a href="listado.html" style="color: white; text-decoration: underline;">&larr; Volver al listado</a></p>
+      </div>
+
+      <div class="caja-formulario">
+        <h2 id="titulo-form">Nueva Planta</h2>
+
+        <form id="form-planta" novalidate>
+          <div>
+            <label for="nombre">Nombre de la planta *</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Jazmín del cabo" required>
+          </div>
+
+          <div>
+            <label for="categoria">Categoría *</label>
+            <select id="categoria" name="categoria" required>
+              <option value="">Seleccioná una categoría...</option>
+              <option value="interior">Interior</option>
+              <option value="exterior">Exterior</option>
+              <option value="suculenta">Suculenta</option>
+              <option value="aromatica">Aromática</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="precio">Precio ($) *</label>
+            <input type="number" id="precio" name="precio" placeholder="Ej: 6500" min="1" required>
+          </div>
+
+          <div>
+            <label for="imagen">Ruta de la imagen *</label>
+            <input type="text" id="imagen" name="imagen" value="img/lavanda.jpg" placeholder="Ej: img/lavanda.jpg" required>
+          </div>
+
+          <div>
+            <label for="descripcion">Descripción *</label>
+            <textarea id="descripcion" name="descripcion" rows="3" placeholder="Características principales y ubicación ideal..." style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: inherit;"></textarea>
+          </div>
+
+          <fieldset>
+            <legend>Cuidados (Opcional)</legend>
+            <div style="margin-bottom: 10px;">
+              <label for="riego">Riego</label>
+              <input type="text" id="riego" name="riego" placeholder="Ej: Moderado (2 veces por semana)">
+            </div>
+            <div style="margin-bottom: 10px;">
+              <label for="luz">Luz solar</label>
+              <input type="text" id="luz" name="luz" placeholder="Ej: Pleno sol o media sombra">
+            </div>
+            <div>
+              <label for="temperatura">Temperatura</label>
+              <input type="text" id="temperatura" name="temperatura" placeholder="Ej: 15°C a 25°C">
+            </div>
+          </fieldset>
+
+          <button type="submit" id="btn-guardar" class="btn-enviar">Guardar planta</button>
+        </form>
+      </div>
     </div>
+  </main>
 
-    <div class="caja-formulario">
-      <h2>Crear cuenta</h2>
-      <p>Campos con * obligatorios</p>
-
-      <form action="login.html" method="get">
-        
-        <fieldset>
-          <legend>Datos personales</legend>
-          
-          <label for="nombre">Nombre *</label><br>
-          <input type="text" id="nombre" name="nombre" required><br><br>
-
-          <label for="apellido">Apellido *</label><br>
-          <input type="text" id="apellido" name="apellido" required><br><br>
-
-          <label for="nacimiento">Fecha de nacimiento</label><br>
-          <input type="date" id="nacimiento" name="nacimiento"><br><br>
-
-          <label for="tel">Telefono</label><br>
-          <input type="tel" id="tel" name="tel">
-        </fieldset>
-
-        <br>
-
-        <fieldset>
-          <legend>Datos de la cuenta</legend>
-
-          <label for="correo">Correo electronico *</label><br>
-          <input type="email" id="correo" name="correo" required><br><br>
-
-          <label for="clave">Contrasena *</label><br>
-          <input type="password" id="clave" name="clave" minlength="8" required><br><br>
-
-          <label for="repetir-clave">Repetir contrasena *</label><br>
-          <input type="password" id="repetir-clave" name="repetir-clave" minlength="8" required><br><br>
-
-          <label for="rol">Rol en el vivero *</label><br>
-          <select id="rol" name="rol" required>
-            <option value="">Elegir...</option>
-            <option value="admin">Administrador</option>
-            <option value="vendedor">Vendedor</option>
-            <option value="cuidador">Cuidador</option>
-          </select>
-        </fieldset>
-
-        <br>
-
-        <label>
-          <input type="checkbox" name="terminos" required> Acepto los terminos y condiciones
-        </label><br>
-
-        <label>
-          <input type="checkbox" name="noticias"> Recibir novedades
-        </label>
-
-        <br><br>
-
-        <input type="submit" value="Crear cuenta" class="btn-enviar">
-      </form>
-
-      <br>
-      <p>¿Ya tenes cuenta? <a href="login.html">Ingresa aca</a></p>
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; VIVERO RAÍZ — TRABAJO PRÁCTICO INTEGRADOR - Nicolás Sánchez</p>
     </div>
+  </footer>
 
-  </div>
+  <script src="js/validaciones.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/api.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      const form = document.getElementById("form-planta");
+      const btnGuardar = document.getElementById("btn-guardar");
 
+      const params = new URLSearchParams(window.location.search);
+      const idEditar = params.get("id");
+      const esEdicion = Boolean(idEditar);
+
+      if (esEdicion) {
+        document.getElementById("titulo-lateral").textContent = "Editar Planta";
+        document.getElementById("desc-lateral").textContent = "Modificá los campos necesarios y guardá los cambios en el servidor.";
+        document.getElementById("titulo-form").textContent = `Editando ejemplar #${idEditar}`;
+        btnGuardar.textContent = "Actualizar planta";
+
+        try {
+          const planta = await ServicioPlantas.obtenerPorId(idEditar);
+          document.getElementById("nombre").value = planta.nombre || "";
+          document.getElementById("categoria").value = planta.categoria || "";
+          document.getElementById("precio").value = planta.precio || "";
+          document.getElementById("imagen").value = planta.imagen || "";
+          document.getElementById("descripcion").value = planta.descripcion || "";
+          document.getElementById("riego").value = planta.riego || "";
+          document.getElementById("luz").value = planta.luz || "";
+          document.getElementById("temperatura").value = planta.temperatura || "";
+        } catch (err) {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No se pudieron cargar los datos de la planta seleccionada.",
+            confirmButtonColor: "#c01d1d"
+          });
+        }
+      }
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const datosForm = {
+          nombre: document.getElementById("nombre").value.trim(),
+          categoria: document.getElementById("categoria").value,
+          precio: Number(document.getElementById("precio").value),
+          imagen: document.getElementById("imagen").value.trim(),
+          descripcion: document.getElementById("descripcion").value.trim(),
+          riego: document.getElementById("riego").value.trim() || "Moderado",
+          luz: document.getElementById("luz").value.trim() || "Luz natural",
+          temperatura: document.getElementById("temperatura").value.trim() || "Templada"
+        };
+
+        if (typeof validarFormularioPlanta === "function") {
+          const errores = validarFormularioPlanta(datosForm);
+          if (errores.length > 0) {
+            Swal.fire({
+              icon: "warning",
+              title: "Revisá los datos",
+              html: errores.join("<br>"),
+              confirmButtonColor: "#1b3b22"
+            });
+            return;
+          }
+        }
+
+        btnGuardar.disabled = true;
+        btnGuardar.textContent = "Guardando...";
+
+        try {
+          if (esEdicion) {
+            await ServicioPlantas.actualizar(idEditar, datosForm);
+          } else {
+            await ServicioPlantas.crear(datosForm);
+          }
+
+          await Swal.fire({
+            icon: "success",
+            title: esEdicion ? "¡Planta actualizada!" : "¡Planta creada!",
+            text: "Los cambios se guardaron correctamente.",
+            timer: 1400,
+            showConfirmButton: false
+          });
+
+          window.location.href = "listado.html";
+        } catch (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Error al guardar",
+            text: "Ocurrió un problema al guardar los datos en el servidor.",
+            confirmButtonColor: "#c01d1d"
+          });
+          btnGuardar.disabled = false;
+          btnGuardar.textContent = esEdicion ? "Actualizar planta" : "Guardar planta";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
