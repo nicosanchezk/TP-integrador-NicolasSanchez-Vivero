@@ -3,103 +3,205 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de Administración — Vivero Raiz</title>
+  <title>Gestión de Catálogo — Vivero Raíz</title>
   <link rel="stylesheet" href="css/estilos.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    Auth.protegerRuta();
+  </script>
 </head>
 <body>
 
   <header>
-    <div class="logo-container">
-      <a href="index.html">
-        <h1>VIVERO RAIZ</h1>
-        <small>INTRANET - GESTION</small>
-      </a>
-    </div>
-    <nav aria-label="Navegacion de sesion">
+    <h1>Vivero Raíz</h1>
+    <button id="btn-menu" class="btn-menu" aria-label="Abrir menú">&#9776;</button>
+    <nav id="nav-principal">
       <ul>
-        <li><span>Hola, Nicolas</span></li>
-        <li><a href="catalogo.html" target="_blank">Ver sitio web</a></li>
-        <li><a href="login.html" class="boton">Cerrar sesion</a></li>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="login.html">Ingresar</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="panel-admin">
-    
+  <main>
     <div class="encabezado-tabla">
-      <h2>Listado de Plantas</h2>
-      <a href="#" class="boton">+ Cargar nueva planta</a>
+      <div>
+        <h2>Panel de Gestión de Plantas</h2>
+        <p>Administración y actualización del stock en el catálogo público.</p>
+      </div>
+      <a href="registro.html" class="boton">+ Cargar nueva planta</a>
     </div>
 
-    <table class="tabla-gestion">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Foto</th>
-          <th>Nombre</th>
-          <th>Categoria</th>
-          <th>Precio</th>
-          <th>Stock</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>#01</td>
-          <td><img src="img/bocadedragon.jpg" alt="Boca de dragon" class="mini-admin"></td>
-          <td>Boca de dragon</td>
-          <td>Exterior</td>
-          <td>$ 5.400</td>
-          <td>8 u.</td>
-          <td>
-            <a href="#" class="btn-accion btn-editar">Editar</a>
-            <a href="#" class="btn-accion btn-borrar">Borrar</a>
-          </td>
-        </tr>
-        <tr>
-          <td>#02</td>
-          <td><img src="img/cactusbola.jpg" alt="Cactus bola" class="mini-admin"></td>
-          <td>Cactus bola</td>
-          <td>Suculenta</td>
-          <td>$ 4.200</td>
-          <td>15 u.</td>
-          <td>
-            <a href="#" class="btn-accion btn-editar">Editar</a>
-            <a href="#" class="btn-accion btn-borrar">Borrar</a>
-          </td>
-        </tr>
-        <tr>
-          <td>#03</td>
-          <td><img src="img/cala.jpg" alt="Cala" class="mini-admin"></td>
-          <td>Cala</td>
-          <td>Interior</td>
-          <td>$ 8.600</td>
-          <td>5 u.</td>
-          <td>
-            <a href="#" class="btn-accion btn-editar">Editar</a>
-            <a href="#" class="btn-accion btn-borrar">Borrar</a>
-          </td>
-        </tr>
-        <tr>
-          <td>#04</td>
-          <td><img src="img/lenguadesuegra.jpg" alt="Lengua de suegra" class="mini-admin"></td>
-          <td>Lengua de suegra</td>
-          <td>Interior</td>
-          <td>$ 9.800</td>
-          <td>12 u.</td>
-          <td>
-            <a href="#" class="btn-accion btn-editar">Editar</a>
-            <a href="#" class="btn-accion btn-borrar">Borrar</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <section aria-label="Listado administrativo de productos">
+      <table class="tabla-gestion">
+        <thead>
+          <tr>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo-tabla-admin">
+        </tbody>
+      </table>
+    </section>
 
+    <section style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 25px; margin-top: 30px;">
+      <h3 style="color: var(--verde-vivero); margin-bottom: 15px; text-align: center;">Distribución de Plantas por Categoría</h3>
+      <div style="max-width: 480px; margin: 0 auto;">
+        <canvas id="grafico-categorias"></canvas>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; VIVERO RAIZ — PANEL ADMINISTRATIVO - Nicolás Sánchez</p>
+    <div class="footer-bottom">
+      <p>&copy; VIVERO RAÍZ — TRABAJO PRÁCTICO INTEGRADOR - Nicolás Sánchez</p>
+    </div>
   </footer>
 
+  <script src="js/validaciones.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/api.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      const tbody = document.getElementById("cuerpo-tabla-admin");
+      if (!tbody) return;
+
+      let plantasEnMemoria = [];
+      let instanciaGrafico = null;
+
+      function actualizarGrafico(lista) {
+        const ctx = document.getElementById("grafico-categorias");
+        if (!ctx) return;
+
+        const conteo = {
+          interior: 0,
+          exterior: 0,
+          suculenta: 0,
+          aromatica: 0
+        };
+
+        lista.forEach(p => {
+          const cat = (p.categoria || "").toLowerCase();
+          if (conteo.hasOwnProperty(cat)) {
+            conteo[cat]++;
+          }
+        });
+
+        if (instanciaGrafico) {
+          instanciaGrafico.destroy();
+        }
+
+        instanciaGrafico = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ["Interior", "Exterior", "Suculenta", "Aromática"],
+            datasets: [{
+              label: "Cantidad de especies",
+              data: [conteo.interior, conteo.exterior, conteo.suculenta, conteo.aromatica],
+              backgroundColor: ["#2e6f40", "#1b3b22", "#689f38", "#8bc34a"],
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { stepSize: 1 }
+              }
+            }
+          }
+        });
+      }
+
+      function renderizarFila(planta) {
+        const fila = document.createElement("tr");
+        fila.dataset.id = planta.id;
+
+        fila.innerHTML = `
+          <td><img src="${planta.imagen}" alt="${planta.nombre}" class="mini-admin"></td>
+          <td><strong>${planta.nombre}</strong></td>
+          <td>${planta.categoria.toUpperCase()}</td>
+          <td>$ ${planta.precio.toLocaleString("es-AR")}</td>
+          <td>
+            <a href="registro.html?id=${planta.id}" class="btn-accion btn-editar" style="display:inline-block;">Editar</a>
+            <button type="button" class="btn-accion btn-borrar" style="border:none; cursor:pointer;">Borrar</button>
+          </td>
+        `;
+
+        const btnBorrar = fila.querySelector(".btn-borrar");
+        btnBorrar.addEventListener("click", async function () {
+          const resultado = await Swal.fire({
+            title: `¿Eliminar "${planta.nombre}"?`,
+            text: "Esta acción quitará la planta del catálogo.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#c01d1d",
+            cancelButtonColor: "#666",
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+          });
+
+          if (!resultado.isConfirmed) return;
+
+          try {
+            await ServicioPlantas.eliminar(planta.id);
+            fila.remove();
+            plantasEnMemoria = plantasEnMemoria.filter(p => p.id !== planta.id);
+            actualizarGrafico(plantasEnMemoria);
+
+            Swal.fire({
+              icon: "success",
+              title: "Eliminada",
+              text: `"${planta.nombre}" fue quitada del catálogo.`,
+              timer: 1500,
+              showConfirmButton: false
+            });
+
+            if (tbody.children.length === 0) {
+              tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px;">No hay plantas cargadas en el sistema.</td></tr>`;
+            }
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "No se pudo eliminar la planta. Intentá nuevamente.",
+              confirmButtonColor: "#c01d1d"
+            });
+          }
+        });
+
+        return fila;
+      }
+
+      tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; color: #555;">Cargando datos del servidor...</td></tr>`;
+
+      try {
+        plantasEnMemoria = await ServicioPlantas.obtenerTodas();
+        tbody.innerHTML = "";
+
+        if (plantasEnMemoria.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px;">No hay plantas registradas.</td></tr>`;
+        } else {
+          plantasEnMemoria.forEach(planta => tbody.appendChild(renderizarFila(planta)));
+        }
+
+        actualizarGrafico(plantasEnMemoria);
+      } catch (error) {
+        tbody.innerHTML = `<tr><td colspan="5" style="color: #c01d1d; padding: 20px; font-weight: bold;">Error al conectar con el servidor de datos.</td></tr>`;
+      }
+    });
+  </script>
 </body>
 </html>
