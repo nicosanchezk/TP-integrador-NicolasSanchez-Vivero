@@ -3,108 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ingreso a Intranet — Vivero Raiz</title>
+  <title>Ingresar — Vivero Raíz</title>
   <link rel="stylesheet" href="css/estilos.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
   <header>
-    <div class="logo-container">
-      <a href="index.html">
-        <h1>VIVERO RAIZ</h1>
-        <small>DESDE 2022</small>
-      </a>
-    </div>
-    <nav aria-label="Navegacion principal">
+    <h1>Vivero Raíz</h1>
+    <button id="btn-menu" class="btn-menu" aria-label="Abrir menú">&#9776;</button>
+    <nav id="nav-principal">
       <ul>
-        <li><a href="catalogo.html">Catalogo</a></li>
-        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="login.html" class="btn-ingresar">Ingresar</a></li>
+        <li><a href="login.html">Ingresar</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="login-layout">
-    <section class="login-lateral">
-      <div class="login-branding">
-        <h2>VIVERO RAIZ</h2>
-        <small>GESTION DE CATALOGO</small>
-      </div>
-      <div class="login-mensaje">
-        <h3>Todo lo que crece, ordenado.</h3>
-        <p>Carga tus plantas, actualiza precios y stock, y lleva el vivero desde una sola pantalla.</p>
-      </div>
-    </section>
+  <main>
+    <section>
+      <h2>Acceso a Intranet</h2>
+      <p>Ingresá con tus credenciales de administrador del vivero.</p>
 
-    <section class="login-formulario">
-      <header>
-        <h2>Ingresar</h2>
-        <p>Usa la cuenta que te dio el vivero.</p>
-      </header>
-
-      <div class="mensaje-error" role="alert">
-        <p>El correo o la contrasena no coinciden. Proba de nuevo.</p>
-      </div>
-
-  <form action="listado.html" method="get">
+      <form id="form-login" novalidate>
         <div>
-          <label for="email">CORREO ELECTRONICO</label>
-          <input type="email" id="email" name="email" required placeholder="nombre@viveroraiz.com">
-          <small>Ejemplo: nombre@viveroraiz.com</small>
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="admin@viveroraiz.com" required>
         </div>
 
         <div>
-          <label for="password">CONTRASENA</label>
-          <input type="password" id="password" name="password" required>
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" required>
         </div>
 
-        <div>
-          <label>
-            <input type="checkbox" name="recordar" checked>
-            Mantener la sesion abierta
-          </label>
-        </div>
-
-        <button type="submit">INGRESAR</button>
+        <button type="submit" id="btn-ingresar">Ingresar al panel</button>
       </form>
-
-      <div class="login-enlaces">
-        <a href="#">¿Olvidaste tu contrasena?</a>
-        <p>¿No tenes cuenta? <a href="registro.html">Registrate</a></p>
-      </div>
     </section>
   </main>
 
   <footer>
-    <section class="footer-info">
-      <div class="footer-col">
-        <h3>VIVERO RAIZ</h3>
-        <p>esquina Boulevard y Urquiza <br>Santa Fe, Argentina<br>3425148312</p>
-      </div>
-
-      <div class="footer-col">
-        <h3>SECCIONES</h3>
-        <nav aria-label="Navegacion pie de pagina">
-          <ul>
-            <li><a href="catalogo.html">Catalogo</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-            <li><a href="login.html">Ingresar</a></li>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="footer-col">
-        <h3>HORARIOS</h3>
-        <p>Lunes a viernes de 9 a 12 / 15 a 20<br>Sabados de 9 a 13<br>Domingos cerrado</p>
-      </div>
-    </section>
-
     <div class="footer-bottom">
-      <p>&copy; VIVERO RAIZ — TRABAJO PRACTICO INTEGRADOR - Nicolás Sánchez</p>
+      <p>&copy; VIVERO RAÍZ — TRABAJO PRÁCTICO INTEGRADOR - Nicolás Sánchez</p>
     </div>
   </footer>
 
+  <script src="js/validaciones.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (Auth.obtenerUsuario()) {
+        window.location.href = "listado.html";
+        return;
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("redirigido") === "1") {
+        Swal.fire({
+          icon: "warning",
+          title: "Acceso restringido",
+          text: "Tenés que iniciar sesión para acceder a la intranet.",
+          confirmButtonColor: "#1b3b22"
+        });
+      }
+
+      const formLogin = document.getElementById("form-login");
+      formLogin.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (!email || !password) {
+          Swal.fire({
+            icon: "error",
+            title: "Campos incompletos",
+            text: "Por favor completá tu correo y contraseña.",
+            confirmButtonColor: "#1b3b22"
+          });
+          return;
+        }
+
+        try {
+          const usuario = await Auth.login(email, password);
+          await Swal.fire({
+            icon: "success",
+            title: `¡Bienvenido, ${usuario.nombre}!`,
+            text: "Iniciando panel de gestión...",
+            timer: 1300,
+            showConfirmButton: false
+          });
+          window.location.href = "listado.html";
+        } catch (err) {
+          Swal.fire({
+            icon: "error",
+            title: "Error de acceso",
+            text: err.message,
+            confirmButtonColor: "#c01d1d"
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
