@@ -3,72 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catalogo — Vivero Raiz</title>
+  <title>Catálogo — Vivero Raíz</title>
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 
   <header>
-    <div class="logo-container">
-      <a href="index.html">
-        <h1>VIVERO RAIZ</h1>
-        <small>DESDE 2022</small>
-      </a>
-    </div>
-    <nav aria-label="Navegacion principal">
+    <h1>Vivero Raíz</h1>
+    <button id="btn-menu" class="btn-menu" aria-label="Abrir menú">&#9776;</button>
+    <nav id="nav-principal">
       <ul>
-        <li><a href="catalogo.html">Catalogo</a></li>
-        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="login.html" class="btn-ingresar">Ingresar</a></li>
+        <li><a href="login.html">Ingresar</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <header class="catalogo-header">
-      <h2>Catalogo</h2>
-      <p>46 plantas disponibles. Los precios incluyen la maceta.</p>
+      <h2>Catálogo</h2>
+      <p id="contador-resultados">Mostrando 6 plantas disponibles. Los precios incluyen la maceta.</p>
     </header>
 
     <section class="filtros-barra">
-      <form action="#" method="get">
+      <form id="form-filtros" onsubmit="event.preventDefault()">
         <label for="buscar">BUSCAR</label>
-        <input type="search" id="buscar" name="buscar" placeholder="Ej: Lavanda">
+        <input type="search" id="buscar" name="buscar" placeholder="Ej: Lavanda" autocomplete="off">
 
-        <label for="categoria">CATEGORIA</label>
+        <label for="categoria">CATEGORÍA</label>
         <select id="categoria" name="categoria">
           <option value="todas">Todas</option>
           <option value="interior">Interior</option>
           <option value="exterior">Exterior</option>
           <option value="suculenta">Suculenta</option>
-          <option value="aromatica">Aromatica</option>
+          <option value="aromatica">Aromática</option>
         </select>
 
         <label for="orden">ORDENAR POR</label>
         <select id="orden" name="orden">
+          <option value="defecto">Sin ordenar</option>
           <option value="nombre-asc">Nombre (A-Z)</option>
           <option value="nombre-desc">Nombre (Z-A)</option>
           <option value="precio-asc">Menor precio</option>
           <option value="precio-desc">Mayor precio</option>
         </select>
 
-        <button type="submit">FILTRAR</button>
+        <button type="button" id="btn-limpiar">Limpiar filtros</button>
       </form>
     </section>
 
-  
-    <section class="grilla-productos" aria-label="Listado de plantas">
-   
-      <article class="tarjeta-planta">
+    <section class="grilla-productos" id="contenedor-plantas" aria-label="Listado de plantas">
+    
+      <p id="sin-resultados" style="display: none; grid-column: 1 / -1; text-align: center; padding: 30px; font-weight: bold; color: #666;">
+        No encontramos plantas con ese criterio. Probá con otra búsqueda o categoría.
+      </p>
+
+      <article class="tarjeta-planta" data-nombre="boca de dragon" data-categoria="exterior" data-precio="5400">
         <img src="img/bocadedragon.jpg" alt="Planta Boca de dragon en maceta">
         <span class="tag-categoria">EXTERIOR</span>
-        <h3>Boca de dragon</h3>
+        <h3>Boca de dragón</h3>
         <p class="precio">$ 5.400</p>
         <a href="planta.html?id=1">VER FICHA &rarr;</a>
       </article>
 
-      <article class="tarjeta-planta">
+      <article class="tarjeta-planta" data-nombre="cactus bola" data-categoria="suculentas" data-precio="4200">
         <img src="img/cactusbola.jpg" alt="Cactus bola redondeado en maceta">
         <span class="tag-categoria">SUCULENTA</span>
         <h3>Cactus bola</h3>
@@ -76,7 +76,7 @@
         <a href="planta.html?id=2">VER FICHA &rarr;</a>
       </article>
 
-      <article class="tarjeta-planta">
+      <article class="tarjeta-planta" data-nombre="cala" data-categoria="interior" data-precio="8600">
         <img src="img/cala.jpg" alt="Planta de Cala con flores blancas">
         <span class="tag-categoria">INTERIOR</span>
         <h3>Cala</h3>
@@ -84,7 +84,7 @@
         <a href="planta.html?id=3">VER FICHA &rarr;</a>
       </article>
 
-      <article class="tarjeta-planta">
+      <article class="tarjeta-planta" data-nombre="lavanda" data-categoria="exterior" data-precio="6900">
         <img src="img/lavanda.jpg" alt="Planta de Lavanda en maceta">
         <span class="tag-categoria">EXTERIOR</span>
         <h3>Lavanda</h3>
@@ -93,7 +93,7 @@
         <a href="planta.html?id=4">VER FICHA &rarr;</a>
       </article>
 
-      <article class="tarjeta-planta">
+      <article class="tarjeta-planta" data-nombre="lengua de suegra" data-categoria="interior" data-precio="9800">
         <img src="img/lenguadesuegra.jpg" alt="Lengua de suegra o Sansevieria en maceta">
         <span class="tag-categoria">INTERIOR</span>
         <h3>Lengua de suegra</h3>
@@ -101,9 +101,9 @@
         <a href="planta.html?id=5">VER FICHA &rarr;</a>
       </article>
 
-      <article class="tarjeta-planta">
+      <article class="tarjeta-planta" data-nombre="romero" data-categoria="aromatica" data-precio="3800">
         <img src="img/romero.jpg" alt="Arbusto de Romero aromatico en maceta">
-        <span class="tag-categoria">AROMATICA</span>
+        <span class="tag-categoria">AROMÁTICA</span>
         <h3>Romero</h3>
         <p class="precio">$ 3.800</p>
         <a href="planta.html?id=6">VER FICHA &rarr;</a>
@@ -124,15 +124,15 @@
   <footer>
     <section class="footer-info">
       <div class="footer-col">
-        <h3>VIVERO RAIZ</h3>
-        <p>esquina Boulevard y Urquiza <br>Santa Fe, Argentina<br>3425148312</p>
+        <h3>VIVERO RAÍZ</h3>
+        <p>esquina Boulevard y Urquiza<br>Santa Fe, Argentina<br>3425148312</p>
       </div>
 
       <div class="footer-col">
         <h3>SECCIONES</h3>
-        <nav aria-label="Navegacion pie de pagina">
+        <nav aria-label="Navegación pie de página">
           <ul>
-            <li><a href="catalogo.html">Catalogo</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="contacto.html">Contacto</a></li>
             <li><a href="login.html">Ingresar</a></li>
@@ -142,14 +142,21 @@
 
       <div class="footer-col">
         <h3>HORARIOS</h3>
-        <p>Lunes a viernes de 9 a 12 / 15 a 20<br>Sabados de 9 a 13<br>Domingos cerrado</p>
+        <p>Lunes a viernes de 9 a 12 / 15 a 20<br>Sábados de 9 a 13<br>Domingos cerrado</p>
       </div>
     </section>
 
     <div class="footer-bottom">
-      <p>&copy; VIVERO RAIZ — TRABAJO PRACTICO INTEGRADOR - Nicolás Sánchez</p>
+      <p>&copy; VIVERO RAÍZ — TRABAJO PRÁCTICO INTEGRADOR - Nicolás Sánchez</p>
     </div>
   </footer>
 
+<script src="js/validaciones.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/catalogo.js"></script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>
