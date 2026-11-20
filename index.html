@@ -8,23 +8,22 @@
 </head>
 <body>
 
-  <header>
-    <div class="logo-container">
-      <a href="index.html">
-        <h1>VIVERO RAIZ</h1>
-        <small>DESDE 2022</small>
-      </a>
-      <p class="ubicacion-destacada">Vivero ubicado en Santa Fe</p>
-    </div>
-    <nav aria-label="Navegacion principal">
-      <ul>
-        <li><a href="catalogo.html">Catalogo</a></li>
-        <li><a href="nosotros.html">Nosotros</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="login.html" class="btn-ingresar">Ingresar</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+    <h1>Vivero Raíz</h1>
+  </a>
+
+  <button id="btn-menu" class="btn-menu" aria-label="Abrir menú">&#9776;</button>
+
+  <nav id="nav-principal">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="catalogo.html">Catálogo</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="login.html">Ingresar</a></li>
+    </ul>
+  </nav>
+</header>
+
 
   <main>
     <section class="hero">
@@ -36,33 +35,40 @@
       </div>
     </section>
 
-    <section class="categorias">
-      <h2>Elegi por donde vas a ponerla</h2>
-      <p>Tres familias que cubren casi cualquier rincon: el living con poca luz, el balcon que se lleva todo el sol y el escritorio.</p>
-      
-      <div class="grilla-categorias">
-        <article>
-          <img src="img/interior.jpg" alt="Planta de interior en maceta">
-          <h3>Interior</h3>
-          <p>Para ambientes con luz indirecta y poco viento.</p>
-          <a href="catalogo.html">VER PLANTAS &rarr;</a>
-        </article>
+<aside id="widget-clima" style="margin-top: 25px;">
+  <h3>Clima actual en el Vivero (Santa Fe)</h3>
+  <p id="estado-clima">Consultando temperatura actual...</p>
+</aside>
 
-        <article>
-          <img src="img/exterior.jpg" alt="Planta de exterior resistente al sol">
-          <h3>Exterior</h3>
-          <p>Resisten sol pleno, lluvia y cambios de temperatura.</p>
-          <a href="catalogo.html">VER PLANTAS &rarr;</a>
-        </article>
+    <section class="seccion-categorias">
+  <h2>Elegí por dónde vas a ponerla</h2>
+  <p>Tres familias que cubren casi cualquier rincón: el living con poca luz, el balcón que se lleva todo el sol y el escritorio.</p>
 
-        <article>
-          <img src="img/suculentas.jpg" alt="Suculenta en maceta de barro">
-          <h3>Suculentas</h3>
-          <p>Riego cada quince dias. Ideales para empezar.</p>
-          <a href="catalogo.html">VER PLANTAS &rarr;</a>
-        </article>
-      </div>
-    </section>
+  <div class="grilla-categorias">
+
+    <article class="tarjeta-categoria">
+      <img src="img/interior.jpg" alt="Planta de interior en living luminoso">
+      <h3>Interior</h3>
+      <p>Para ambientes con luz indirecta y poco viento.</p>
+      <a href="catalogo.html?categoria=interior">VER PLANTAS &rarr;</a>
+    </article>
+
+    <article class="tarjeta-categoria">
+      <img src="img/exterior.jpg" alt="Planta de exterior en maceta al sol">
+      <h3>Exterior</h3>
+      <p>Ideales para patios, jardines y balcones soleados.</p>
+      <a href="catalogo.html?categoria=exterior">VER PLANTAS &rarr;</a>
+    </article>
+
+    <article class="tarjeta-categoria">
+      <img src="img/suculentas.jpg" alt="Suculentas y cactus para escritorio">
+      <h3>Suculentas</h3>
+      <p>Bajo riego y máxima resistencia para escritorios y ventanas.</p>
+      <a href="catalogo.html?categoria=suculenta">VER PLANTAS &rarr;</a>
+    </article>
+    
+  </div>
+</section>
 
     <section class="sobre-nosotros-preview">
       <img src="img/vivero-cultivo.jpg" alt="Sector de cultivo en el vivero">
@@ -116,6 +122,28 @@
       <p>&copy; VIVERO RAIZ — TRABAJO PRACTICO INTEGRADOR - Nicolás Sánchez</p>
     </div>
   </footer>
+<script src="js/validaciones.js"></script>
 
+<script src="js/validaciones.js"></script>
+  <script src="js/api.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      const textoClima = document.getElementById("estado-clima");
+      if (!textoClima) return;
+
+      try {
+        const clima = await ServicioClima.obtenerTemperaturaActual();
+        const consejo = clima.temperatura >= 28 
+          ? "Día caluroso: recordá revisar la humedad de tus plantas de exterior." 
+          : "Temperatura agradable: ideal para trasplantes y riego moderado.";
+
+        textoClima.innerHTML = `<strong>${clima.temperatura}${clima.unidad}</strong> — ${consejo}`;
+      } catch (error) {
+        textoClima.textContent = "No se pudo cargar el pronóstico en este momento.";
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>
