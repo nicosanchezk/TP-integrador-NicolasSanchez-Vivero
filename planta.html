@@ -3,108 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ficha de Planta — Vivero Raiz</title>
+  <title>Detalle de Planta — Vivero Raíz</title>
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
+
   <header>
-    <div class="logo-container">
-      <a href="index.html">
-        <h1>VIVERO RAIZ</h1>
-        <small>DESDE 2022</small>
-      </a>
-      <p class="ubicacion-destacada">Vivero ubicado en Santa Fe</p>
-    </div>
-    <nav aria-label="Navegacion principal">
+    <h1>Vivero Raíz</h1>
+    <button id="btn-menu" class="btn-menu" aria-label="Abrir menú">&#9776;</button>
+    <nav id="nav-principal">
       <ul>
-        <li><a href="catalogo.html">Catalogo</a></li>
-        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="login.html" class="boton">Ingresar</a></li>
+        <li><a href="login.html">Ingresar</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="ficha-planta">
-    
-    <p class="migas">
-      <a href="index.html">Inicio</a> &gt; 
-      <a href="catalogo.html">Catalogo</a> &gt; 
-      <span>Lengua de suegra</span>
-    </p>
-
-    <section class="detalle-principal">
-      <div class="bloque-fotos">
-        <img src="img/lenguadesuegra.jpg" alt="Lengua de suegra" class="foto-grande">
-        <div class="fotos-chicas">
-          <img src="img/lenguadesuegra.jpg" alt="Detalle">
-          <img src="img/interior.jpg" alt="Ambiente">
-        </div>
-      </div>
-
-      <div class="bloque-info">
-        <small>INTERIOR</small>
-        <h2>Lengua de suegra</h2>
-        <p><em>Sansevieria trifasciata</em></p>
-        <p class="precio">$ 9.800</p>
-        <p>Planta purificadora de aire, muy resistente y de bajo mantenimiento. Ideal para interiores y gente con poco tiempo.</p>
-        
-        <div class="botones-compra">
-          <a href="contacto.html" class="boton">Consultar disponibilidad</a>
-          <a href="catalogo.html" class="boton boton-borde">Volver al catalogo</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="seccion-tabla">
-      <h3>Especificaciones tecnicas</h3>
-      <table>
-        <tr>
-          <th>Categoria</th>
-          <td>Interior</td>
-        </tr>
-        <tr>
-          <th>Requerimiento de luz</th>
-          <td>Media sombra</td>
-        </tr>
-        <tr>
-          <th>Frecuencia de riego</th>
-          <td>Bajo</td>
-        </tr>
-        <tr>
-          <th>Apta mascotas</th>
-          <td>No (toxica si se ingiere)</td>
-        </tr>
-        <tr>
-          <th>Stock actual</th>
-          <td>12 unidades</td>
-        </tr>
-      </table>
-    </section>
-
-    <section class="seccion-cuidados">
-      <h3>Guia de cuidados basicos</h3>
-      <div class="cajas-cuidados">
-        <div>
-          <h4>Ubicacion y Luz</h4>
-          <p>Luz indirecta o media sombra. Evitar el sol directo fuerte.</p>
-        </div>
-        <div>
-          <h4>Riego</h4>
-          <p>Solo cuando la tierra este seca por completo. Poco riego en invierno.</p>
-        </div>
-        <div>
-          <h4>Mantenimiento</h4>
-          <p>Limpiar el polvo de las hojas con un trapo humedo.</p>
-        </div>
-      </div>
-    </section>
-
+  <main>
+    <div id="detalle-contenedor" class="ficha-planta">
+    </div>
   </main>
 
   <footer>
-    <p>&copy; VIVERO RAIZ — TRABAJO PRACTICO INTEGRADOR - Nicolás Sánchez</p>
+    <section class="footer-info">
+      <div class="footer-col">
+        <h3>VIVERO RAÍZ</h3>
+        <p>esquina Boulevard y Urquiza<br>Santa Fe, Argentina<br>3425148312</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>SECCIONES</h3>
+        <nav aria-label="Navegación pie de página">
+          <ul>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="login.html">Ingresar</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h3>HORARIOS</h3>
+        <p>Lunes a viernes de 9 a 12 / 15 a 20<br>Sábados de 9 a 13<br>Domingos cerrado</p>
+      </div>
+    </section>
+
+    <div class="footer-bottom">
+      <p>&copy; VIVERO RAÍZ — TRABAJO PRÁCTICO INTEGRADOR - Nicolás Sánchez</p>
+    </div>
   </footer>
 
+  <script src="js/validaciones.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/api.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      const contenedor = document.getElementById("detalle-contenedor");
+      if (!contenedor) return;
+
+      const params = new URLSearchParams(window.location.search);
+      const idPlanta = params.get("id");
+
+      if (!idPlanta) {
+        contenedor.innerHTML = `
+          <h2>Planta no encontrada</h2>
+          <p>No se especificó ninguna planta para visualizar.</p>
+          <p><a href="catalogo.html" class="boton">&larr; Volver al catálogo</a></p>
+        `;
+        return;
+      }
+
+      contenedor.innerHTML = `<p style="text-align: center; padding: 40px; color: #555;">Cargando información del ejemplar...</p>`;
+
+      try {
+        const planta = await ServicioPlantas.obtenerPorId(idPlanta);
+
+        document.title = `${planta.nombre} — Vivero Raíz`;
+
+        contenedor.innerHTML = `
+          <div class="detalle-principal">
+            <div>
+              <img class="foto-grande" src="${planta.imagen}" alt="${planta.nombre}">
+            </div>
+            <div class="bloque-info">
+              <h2>${planta.nombre}</h2>
+              <p class="precio">$ ${planta.precio.toLocaleString("es-AR")}</p>
+              <p>${planta.descripcion}</p>
+              <div class="botones-compra">
+                <a href="contacto.html" class="boton">Consultar por esta planta</a>
+                <a href="catalogo.html" style="margin-left: 10px;">&larr; Volver</a>
+              </div>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>Requerimiento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Categoría</td><td>${planta.categoria.toUpperCase()}</td></tr>
+              <tr><td>Riego</td><td>${planta.riego || "Moderado"}</td></tr>
+              <tr><td>Luz solar</td><td>${planta.luz || "Luz natural"}</td></tr>
+              <tr><td>Temperatura</td><td>${planta.temperatura || "Templada"}</td></tr>
+            </tbody>
+          </table>
+        `;
+      } catch (err) {
+        contenedor.innerHTML = `
+          <h2>Planta no disponible</h2>
+          <p>No se pudo cargar la información de la planta solicitada desde el servidor.</p>
+          <p><a href="catalogo.html" class="boton">&larr; Volver al catálogo</a></p>
+        `;
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>
