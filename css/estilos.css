@@ -581,3 +581,41 @@ footer a {
     width: 100%;
   }
 }
+
+.contenedor-contacto {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+.encabezado-contacto {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.encabezado-contacto h2 {
+  color: var(--verde-vivero);
+  margin-bottom: 8px;
+}
+
+.encabezado-contacto p {
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.contacto-seccion,
+.contacto-info {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 25px;
+}
+
+@media (max-width: 768px) {
+  .contenedor-contacto {
+    grid-template-columns: 1fr;
+  }
+}
