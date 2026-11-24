@@ -619,3 +619,40 @@ footer a {
     grid-template-columns: 1fr;
   }
 }
+
+.contenedor-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 550px;
+  margin: 30px auto;
+}
+
+.contenedor-contacto .contacto-seccion,
+.contenedor-contacto .contacto-info {
+  margin: 0 !important;
+  max-width: 100% !important;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.encabezado-contacto {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.encabezado-contacto h2 {
+  color: var(--verde-vivero);
+  margin-bottom: 8px;
+}
+
+.encabezado-contacto p {
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
