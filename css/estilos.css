@@ -656,3 +656,9 @@ footer a {
   line-height: 1.5;
   margin: 0;
 }
+main section img {
+  display: block;
+  margin: 0 auto 20px auto;
+  max-width: 100%;
+  border-radius: 8px;
+}
